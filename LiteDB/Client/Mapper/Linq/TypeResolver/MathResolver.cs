@@ -11,7 +11,7 @@ namespace LiteDB
 {
     internal class MathResolver : ITypeResolver
     {
-        public string ResolveMethod(MethodInfo method, Stack<string> root)
+        public string ResolveMethod(MethodInfo method)
         {
             var qtParams = method.GetParameters().Length;
 

@@ -414,7 +414,6 @@ namespace LiteDB
             return new LiteQueryable<TResult>(_engine, _mapper, _collection, _query);
         }
 
-
         /// <summary>
         /// Filter documents after group by pipe according to predicate expression (requires GroupBy and support only one Having)
         /// </summary>

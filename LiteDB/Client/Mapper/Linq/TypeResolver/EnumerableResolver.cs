@@ -11,7 +11,7 @@ namespace LiteDB
 {
     internal class EnumerableResolver : ITypeResolver
     {
-        public string ResolveMethod(MethodInfo method, Stack<string> root)
+        public string ResolveMethod(MethodInfo method)
         {
             // all methods in Enumerable are Extensions (static methods), so first parameter is IEnumerable
             var name = Reflection.MethodName(method, 1); 

@@ -51,6 +51,8 @@ namespace LiteDB
         K Last<K>(Func<T, K> keySelector);
         K Avg<K>(Func<T, K> keySelector);
         K Sum<K>(Func<T, K> keySelector);
+
+        K Array<K>(Func<T, K> keySelector);
     }
 
     public interface ILiteQueryableResult<T>

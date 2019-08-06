@@ -34,14 +34,13 @@ namespace LiteDB
         private readonly BsonMapper _mapper;
         private readonly BsonDocument _parameters = new BsonDocument();
 
+        private string _rootSymbol;
         private string _rootParameter = null;
-        private string _rootSymbol = "$";
         private int _paramIndex = 0;
         private Type _dbRefType = null;
 
         private readonly StringBuilder _builder = new StringBuilder();
         private readonly Stack<Expression> _nodes = new Stack<Expression>();
-        private readonly Stack<string> _rootStack = new Stack<string>();
 
         public LinqExpressionVisitor(BsonMapper mapper)
         {
@@ -51,6 +50,18 @@ namespace LiteDB
         public BsonExpression Resolve(Expression expr, bool predicate, bool extend)
         {
             if (extend) _builder.Append("EXTEND($,");
+
+            if (expr is LambdaExpression lambda)
+            {
+                var type = lambda.Type.GetGenericArguments().First();
+
+                _rootSymbol = type.Name == "ILiteGroupBy`2" ? "*" : "$";
+                _rootParameter = lambda.Parameters.First().Name;
+            }
+            else
+            {
+                throw new NotSupportedException($"Expression `{expr.ToString()}` must be a Lambda expression");
+            }
 
             this.Visit(expr);
 
@@ -76,7 +87,7 @@ namespace LiteDB
             }
             catch (Exception ex)
             {
-                throw new NotSupportedException($"Invalid BsonExpression when converted from Linq expression: {expr.ToString()} - `{expression}`", ex);
+                throw new NotSupportedException($"Invalid BsonExpression when converted from Linq expression: {expr.ToString()} - `{expression}`: {ex?.Message}", ex);
             }
         }
 
@@ -98,20 +109,6 @@ namespace LiteDB
         /// </summary>
         protected override Expression VisitParameter(ParameterExpression node)
         {
-            if (_rootParameter == null)
-            {
-                _rootParameter = node.Name;
-
-                if (_rootStack.Count > 0)
-                {
-                    _rootSymbol = _rootStack.Pop();
-                }
-                else
-                {
-                    _rootSymbol = "$";
-                }
-            }
-
             _builder.Append(node.Name == _rootParameter ? _rootSymbol : "@");
 
             return base.VisitParameter(node);
@@ -211,7 +208,7 @@ namespace LiteDB
             }
 
             // otherwise I have resolver for this method
-            var pattern = type.ResolveMethod(node.Method, _rootStack);
+            var pattern = type.ResolveMethod(node.Method);
 
             if (pattern == null) throw new NotSupportedException($"Method {Reflection.MethodName(node.Method)} in {node.Method.DeclaringType.Name} are not supported when convert to BsonExpression ({node.ToString()}).");
 
@@ -547,7 +544,7 @@ namespace LiteDB
                 }
 
                 // otherwise I have resolver for this method
-                var pattern = type.ResolveMethod(met.Method, _rootStack);
+                var pattern = type.ResolveMethod(met.Method);
 
                 if (pattern == null || !pattern.StartsWith("#")) throw new NotSupportedException($"Method {met.Method.Name} not available to convert to BsonExpression inside Any/All call.");
 

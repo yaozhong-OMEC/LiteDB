@@ -11,7 +11,7 @@ namespace LiteDB
 {
     internal class ObjectIdResolver : ITypeResolver
     {
-        public string ResolveMethod(MethodInfo method, Stack<string> root)
+        public string ResolveMethod(MethodInfo method)
         {
             switch (method.Name)
             {
