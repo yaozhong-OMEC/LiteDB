@@ -11,7 +11,7 @@ namespace LiteDB
 {
     internal class BsonValueResolver : ITypeResolver
     {
-        public string ResolveMethod(MethodInfo method) => null;
+        public string ResolveMethod(MethodInfo method, Stack<string> root) => null;
 
         public string ResolveMember(MemberInfo member)
         {

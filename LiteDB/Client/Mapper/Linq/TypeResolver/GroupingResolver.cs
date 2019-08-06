@@ -9,34 +9,49 @@ using static LiteDB.Constants;
 
 namespace LiteDB
 {
-    internal class GroupingResolver : EnumerableResolver
+    internal class GroupingResolver : ITypeResolver
     {
-        public override string ResolveMethod(MethodInfo method)
+        public string ResolveMethod(MethodInfo method, Stack<string> root)
         {
             // all methods in Enumerable are Extensions (static methods), so first parameter is IEnumerable
             var name = Reflection.MethodName(method, 1);
 
-            // only few IEnumerable methods are supported in IGrouping
-            // (only when expression are inside)
             switch (name)
             {
-                case "Count()":
+                case "Count()": return "COUNT(*)";
                 case "Sum()":
+                    root.Push("*");
+                    return "SUM(@0)";
                 case "Average()":
-                    return base.ResolveMethod(method);
+                    root.Push("*");
+                    return "AVG(@0)";
+                case "Max()":
+                    root.Push("*");
+                    return "MAX(@0)";
+                case "Min()":
+                    root.Push("*");
+                    return "MIN(@0)";
+                case "First()":
+                    root.Push("*");
+                    return "FIRST(@0)";
+                case "Last()":
+                    root.Push("*");
+                    return "LAST(@0)";
             }
 
             return null;
         }
 
-        public override string ResolveMember(MemberInfo member)
+        public string ResolveMember(MemberInfo member)
         {
             switch (member.Name)
             {
                 case "Key": return "@key";
             }
 
-            return base.ResolveMember(member);
+            return null;
         }
+
+        public string ResolveCtor(ConstructorInfo ctor) => null;
     }
 }

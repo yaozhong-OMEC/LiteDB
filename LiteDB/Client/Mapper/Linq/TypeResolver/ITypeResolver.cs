@@ -12,7 +12,7 @@ namespace LiteDB
 {
     internal interface ITypeResolver
     {
-        string ResolveMethod(MethodInfo method);
+        string ResolveMethod(MethodInfo method, Stack<string> root);
 
         string ResolveMember(MemberInfo member);
 

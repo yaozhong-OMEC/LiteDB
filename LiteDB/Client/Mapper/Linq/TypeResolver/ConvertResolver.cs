@@ -11,7 +11,7 @@ namespace LiteDB
 {
     internal class ConvertResolver : ITypeResolver
     {
-        public string ResolveMethod(MethodInfo method)
+        public string ResolveMethod(MethodInfo method, Stack<string> root)
         {
             switch (method.Name)
             {

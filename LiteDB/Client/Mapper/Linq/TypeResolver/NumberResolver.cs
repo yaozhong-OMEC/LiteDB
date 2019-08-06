@@ -18,7 +18,7 @@ namespace LiteDB
             _parseMethod = parseMethod;
         }
 
-        public string ResolveMethod(MethodInfo method)
+        public string ResolveMethod(MethodInfo method, Stack<string> root)
         {
             switch (method.Name)
             {

@@ -37,8 +37,20 @@ namespace LiteDB
 
     public interface ILiteQueryableGroupBy<TKey, T> : ILiteQueryableResult<T>
     {
-        ILiteQueryableGroupBy<TKey, T> Having(Expression<Func<IEnumerable<T>, bool>> keySelector);
-        ILiteQueryableResult<TResult> Select<TResult>(Expression<Func<IGrouping<TKey, T>, TResult>> selector);
+        ILiteQueryableGroupBy<TKey, T> Having(Expression<Func<ILiteGroupBy<TKey, T>, bool>> keySelector);
+        ILiteQueryableResult<TResult> Select<TResult>(Expression<Func<ILiteGroupBy<TKey, T>, TResult>> selector);
+    }
+
+    public interface ILiteGroupBy<TKey, T>
+    {
+        TKey Key { get; set; }
+        int Count();
+        K Min<K>(Func<T, K> keySelector);
+        K Max<K>(Func<T, K> keySelector);
+        K First<K>(Func<T, K> keySelector);
+        K Last<K>(Func<T, K> keySelector);
+        K Avg<K>(Func<T, K> keySelector);
+        K Sum<K>(Func<T, K> keySelector);
     }
 
     public interface ILiteQueryableResult<T>

@@ -28,7 +28,7 @@ namespace LiteDB
             [typeof(ObjectId)] = new ObjectIdResolver(),
             [typeof(String)] = new StringResolver(),
             [typeof(Nullable)] = new NullableResolver(),
-            [typeof(IGrouping<,>)] = new GroupingResolver()
+            [typeof(ILiteGroupBy<,>)] = new GroupingResolver()
         };
 
         private readonly BsonMapper _mapper;
@@ -41,6 +41,7 @@ namespace LiteDB
 
         private readonly StringBuilder _builder = new StringBuilder();
         private readonly Stack<Expression> _nodes = new Stack<Expression>();
+        private readonly Stack<string> _rootStack = new Stack<string>();
 
         public LinqExpressionVisitor(BsonMapper mapper)
         {
@@ -86,7 +87,7 @@ namespace LiteDB
         {
             var l = base.VisitLambda(node);
 
-            // remove last parameter $ (or @)
+            // remove last parameter $/@/*
             _builder.Length--;
 
             return l;
@@ -101,10 +102,14 @@ namespace LiteDB
             {
                 _rootParameter = node.Name;
 
-                // if root parameter is IEnumerable use root symbol as "*" (source)
-                _rootSymbol = typeof(IEnumerable).IsAssignableFrom(node.Type) &&
-                    node.Type != typeof(BsonDocument) ? 
-                    "*" : "$";
+                if (_rootStack.Count > 0)
+                {
+                    _rootSymbol = _rootStack.Pop();
+                }
+                else
+                {
+                    _rootSymbol = "$";
+                }
             }
 
             _builder.Append(node.Name == _rootParameter ? _rootSymbol : "@");
@@ -161,7 +166,6 @@ namespace LiteDB
                 _nodes.Pop();
             }
 
-
             return node;
         }
 
@@ -207,7 +211,7 @@ namespace LiteDB
             }
 
             // otherwise I have resolver for this method
-            var pattern = type.ResolveMethod(node.Method);
+            var pattern = type.ResolveMethod(node.Method, _rootStack);
 
             if (pattern == null) throw new NotSupportedException($"Method {Reflection.MethodName(node.Method)} in {node.Method.DeclaringType.Name} are not supported when convert to BsonExpression ({node.ToString()}).");
 
@@ -543,7 +547,7 @@ namespace LiteDB
                 }
 
                 // otherwise I have resolver for this method
-                var pattern = type.ResolveMethod(met.Method);
+                var pattern = type.ResolveMethod(met.Method, _rootStack);
 
                 if (pattern == null || !pattern.StartsWith("#")) throw new NotSupportedException($"Method {met.Method.Name} not available to convert to BsonExpression inside Any/All call.");
 
@@ -702,10 +706,10 @@ namespace LiteDB
             // get method declaring type - if is from any kind of list, read as Enumerable
             var isList = Reflection.IsList(declaringType);
             var isNullable = Reflection.IsNullable(declaringType);
-            var isGroupBy = declaringType.Name == "IGrouping`2"; // using dirty way (not work when using .GetInterfaces())
+            var isGroupBy = declaringType.Name == "ILiteGroupBy`2"; // using dirty way (not work when using .GetInterfaces())
 
             var type =
-                isGroupBy ? typeof(IGrouping<,>) :
+                isGroupBy ? typeof(ILiteGroupBy<,>) :
                 isNullable ? typeof(Nullable) :
                 isList ? typeof(Enumerable) :
                 declaringType;

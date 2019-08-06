@@ -11,10 +11,7 @@ namespace LiteDB
 {
     internal class NullableResolver : ITypeResolver
     {
-        public string ResolveMethod(MethodInfo method)
-        {
-            return null;
-        }
+        public string ResolveMethod(MethodInfo method, Stack<string> root) => null;
 
         public string ResolveMember(MemberInfo member)
         {

@@ -407,7 +407,7 @@ namespace LiteDB
         /// <summary>
         /// Project all documents inside a single expression. Output will be a single document or one document per group (used in GroupBy)
         /// </summary>
-        public ILiteQueryableResult<TResult> Select<TResult>(Expression<Func<IGrouping<TKey, T>, TResult>> selector)
+        public ILiteQueryableResult<TResult> Select<TResult>(Expression<Func<ILiteGroupBy<TKey, T>, TResult>> selector)
         {
             _query.Select = _mapper.GetExpression(selector);
             
@@ -418,7 +418,7 @@ namespace LiteDB
         /// <summary>
         /// Filter documents after group by pipe according to predicate expression (requires GroupBy and support only one Having)
         /// </summary>
-        public ILiteQueryableGroupBy<TKey, T> Having(Expression<Func<IEnumerable<T>, bool>> predicate)
+        public ILiteQueryableGroupBy<TKey, T> Having(Expression<Func<ILiteGroupBy<TKey, T>, bool>> predicate)
         {
             if (_query.Having != null) throw new ArgumentException("HAVING already defined in this query");
             

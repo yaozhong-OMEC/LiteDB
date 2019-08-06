@@ -69,6 +69,8 @@ namespace LiteDB
         Backslash,
         /// <summary> % </summary>
         Percent,
+        /// <summary> | </summary>
+        Pipe,
         /// <summary> "..." or '...' </summary>
         String,
         /// <summary> [0-9]+ </summary>
@@ -492,6 +494,11 @@ namespace LiteDB
 
                 case '%':
                     token = new Token(TokenType.Percent, "%", this.Position);
+                    this.ReadChar();
+                    break;
+
+                case '|':
+                    token = new Token(TokenType.Pipe, "|", this.Position);
                     this.ReadChar();
                     break;
 
