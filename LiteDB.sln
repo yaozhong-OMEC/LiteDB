@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiteDB.Tests", "LiteDB.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteDB.Studio", "LiteDB.Studio\LiteDB.Studio.csproj", "{0002E0FF-C91F-4B8B-B29B-2A477E184408}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteDB.Studio.Mac", "LiteDB.Studio.Mac\LiteDB.Studio.Mac.csproj", "{B6934C6D-51DD-48CA-AF69-0E65E7EE65D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteDB.Studio.Core", "LiteDB.Studio.Core\LiteDB.Studio.Core.csproj", "{7018B692-9075-456C-A9F1-0A17B8FB096A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,14 @@ Global
 		{0002E0FF-C91F-4B8B-B29B-2A477E184408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0002E0FF-C91F-4B8B-B29B-2A477E184408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0002E0FF-C91F-4B8B-B29B-2A477E184408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6934C6D-51DD-48CA-AF69-0E65E7EE65D4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B6934C6D-51DD-48CA-AF69-0E65E7EE65D4}.Debug|Any CPU.Build.0 = Debug|x86
+		{B6934C6D-51DD-48CA-AF69-0E65E7EE65D4}.Release|Any CPU.ActiveCfg = Release|x86
+		{B6934C6D-51DD-48CA-AF69-0E65E7EE65D4}.Release|Any CPU.Build.0 = Release|x86
+		{7018B692-9075-456C-A9F1-0A17B8FB096A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7018B692-9075-456C-A9F1-0A17B8FB096A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7018B692-9075-456C-A9F1-0A17B8FB096A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7018B692-9075-456C-A9F1-0A17B8FB096A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
