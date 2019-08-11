@@ -1,5 +1,7 @@
 using LiteDB.Studio.Core;
 using LiteDB.Studio.Core.Attributes;
+using LiteDB.Studio.Mac.Views.Controls;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Mac.Core;
@@ -26,6 +28,13 @@ namespace LiteDB.Studio.Mac
                 .RegisterAsSingleton();
             
             base.InitializeFirstChance();
+        }
+
+        protected override void FillBindingNames(IMvxBindingNameRegistry registry)
+        {
+            base.FillBindingNames(registry);
+            
+            registry.AddOrOverwrite(typeof(NSExtendedToolbarItem), nameof(NSExtendedToolbarItem.Activated));
         }
     }
 }

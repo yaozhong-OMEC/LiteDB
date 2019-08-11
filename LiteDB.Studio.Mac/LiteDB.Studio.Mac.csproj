@@ -100,6 +100,7 @@
     <Compile Include="Views\ConnectionForm\ConnectionFormViewController.designer.cs">
       <DependentUpon>ConnectionFormViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\NSExtendedToolbarItem.cs" />
     <Compile Include="Views\Main\StudioViewController.cs" />
     <Compile Include="Views\ConnectionForm\ConnectionFormViewController.cs" />
     <Compile Include="Views\Main\StudioViewController.designer.cs">
