@@ -70,6 +70,16 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_32-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_256-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_512-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\logo_litedb_1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
