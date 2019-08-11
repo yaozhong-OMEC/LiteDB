@@ -5,27 +5,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
-        <scene sceneID="YbD-z3-y8a">
-            <objects>
-                <windowController id="iaC-wL-wpV" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="yCD-D6-CVJ">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <connections>
-                            <outlet property="delegate" destination="iaC-wL-wpV" id="vb2-ay-7to"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="D20-rr-Ysn" kind="relationship" relationship="window.shadowedContentViewController" id="EZo-iv-S7C"/>
-                    </connections>
-                </windowController>
-                <customObject id="trY-7b-hFp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="82" y="9"/>
-        </scene>
         <!--Connection Form View Controller-->
         <scene sceneID="LGO-Rp-qlc">
             <objects>
@@ -36,19 +15,45 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OsF-24-FMc">
-                                <rect key="frame" x="222" y="126" width="37" height="17"/>
+                                <rect key="frame" x="161" y="126" width="158" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="9xw-F3-N0g">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Properties will come here" id="9xw-F3-N0g">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjg-5L-na9">
+                                <rect key="frame" x="385" y="13" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="HdH-6V-pmE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baj-Vv-I99">
+                                <rect key="frame" x="304" y="13" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="CPx-Rn-Dux">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="baj-Vv-I99" id="bAl-Wn-odq"/>
+                        <outlet property="confirmButton" destination="mjg-5L-na9" id="bts-DW-hoM"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="82" y="471"/>
+            <point key="canvasLocation" x="86" y="576"/>
         </scene>
     </scenes>
 </document>

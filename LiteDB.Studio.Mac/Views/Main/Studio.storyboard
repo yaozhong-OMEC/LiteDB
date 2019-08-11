@@ -5,7 +5,41 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Content View Controller-->
+        <!--Window Controller-->
+        <scene sceneID="EMu-ds-353">
+            <objects>
+                <windowController storyboardIdentifier="StudioToolbarWindowController" showSeguePresentationStyle="single" id="Jup-8R-CHv" customClass="StudioToolbarWindowController" sceneMemberID="viewController">
+                    <window key="window" title="LiteDB.Studio.Mac" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="3g4-Zw-Zp0">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <rect key="contentRect" x="653" y="500" width="480" height="270"/>
+                        <rect key="screenRect" x="300" y="300" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="480" height="270"/>
+                        <toolbar key="toolbar" implicitIdentifier="8207097D-B248-4910-8872-BBD649720872" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="LdZ-Zj-Xnp">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="4ADE4537-93E2-4544-A3CA-D0C6F05DD554" label="Connect" paletteLabel="Toolbar Item" tag="-1" autovalidates="NO" id="dZx-07-21E" customClass="NSExtendedToolbarItem"/>
+                                <toolbarItem implicitItemIdentifier="DA67857E-E7F6-492E-9573-9BF044286971" label="Disconnect" paletteLabel="Toolbar Item" tag="-1" autovalidates="NO" id="Rlg-eB-VZP" customClass="NSExtendedToolbarItem"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="w9E-0t-WCh"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="dZx-07-21E"/>
+                                <toolbarItem reference="Rlg-eB-VZP"/>
+                                <toolbarItem reference="w9E-0t-WCh"/>
+                            </defaultToolbarItems>
+                        </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="Jup-8R-CHv" id="Z77-hE-FGB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <outlet property="connectButton" destination="dZx-07-21E" id="EWK-va-a7f"/>
+                        <outlet property="disconnectButton" destination="Rlg-eB-VZP" id="UIg-Ff-Ytx"/>
+                    </connections>
+                </windowController>
+                <customObject id="CUN-aP-PuU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117" y="-543"/>
+        </scene>
+        <!--Studio View Controller-->
         <scene sceneID="2Yg-1U-5Eg">
             <objects>
                 <viewController storyboardIdentifier="StudioViewController" id="43V-Wn-hUC" customClass="StudioViewController" sceneMemberID="viewController">
@@ -29,7 +63,7 @@
                 </viewController>
                 <customObject id="uU3-td-wKi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="17"/>
+            <point key="canvasLocation" x="117" y="-98"/>
         </scene>
     </scenes>
 </document>
