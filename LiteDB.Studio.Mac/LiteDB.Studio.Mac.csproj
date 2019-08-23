@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Services\Interfaces" />
     <Folder Include="Views\" />
     <Folder Include="Views\ConnectionForm\" />
   </ItemGroup>
@@ -95,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\PlatformService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Views\ConnectionForm\ConnectionFormViewController.designer.cs">
