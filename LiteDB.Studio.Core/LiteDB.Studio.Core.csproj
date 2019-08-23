@@ -14,5 +14,9 @@
 	  <PackageReference Include="PropertyChanged.Fody" Version="3.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\LiteDB\LiteDB.csproj" />
+	</ItemGroup>
+
 	<Import Project="..\packages\Fody.5.1.1\build\Fody.targets" Condition="Exists('..\packages\Fody.5.1.1\build\Fody.targets')" />
 </Project>

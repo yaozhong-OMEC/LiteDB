@@ -121,6 +121,10 @@
       <Project>{7018b692-9075-456c-a9f1-0a17b8fb096a}</Project>
       <Name>LiteDB.Studio.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LiteDB\LiteDB.csproj">
+      <Project>{9497da19-1fca-4c2e-a1ab-8dfaacbc76e1}</Project>
+      <Name>LiteDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Import Project="..\packages\Fody.5.1.1\build\Fody.targets" Condition="Exists('..\packages\Fody.5.1.1\build\Fody.targets')" />
