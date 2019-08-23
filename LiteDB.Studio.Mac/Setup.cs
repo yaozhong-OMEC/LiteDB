@@ -1,10 +1,12 @@
 using LiteDB.Studio.Core;
 using LiteDB.Studio.Core.Attributes;
+using LiteDB.Studio.Mac.Presenters;
 using LiteDB.Studio.Mac.Views.Controls;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Mac.Core;
+using MvvmCross.Platforms.Mac.Presenters;
 
 namespace LiteDB.Studio.Mac
 {
@@ -35,6 +37,11 @@ namespace LiteDB.Studio.Mac
             base.FillBindingNames(registry);
             
             registry.AddOrOverwrite(typeof(NSExtendedToolbarItem), nameof(NSExtendedToolbarItem.Activated));
+        }
+
+        protected override IMvxMacViewPresenter CreateViewPresenter()
+        {
+            return new CustomMacViewPresenter(ApplicationDelegate);
         }
     }
 }

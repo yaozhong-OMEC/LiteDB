@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Presenters\CustomMacViewPresenter.cs" />
     <Compile Include="Services\PlatformService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\BaseViewController.cs" />
