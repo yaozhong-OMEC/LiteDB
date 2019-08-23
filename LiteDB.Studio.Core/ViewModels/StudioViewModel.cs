@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using LiteDB.Studio.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -8,31 +9,34 @@ namespace LiteDB.Studio.Core.ViewModels
 {
     public class StudioViewModel : MvxNavigationViewModel
     {
-        public bool IsConnectedToDatabase { get; set; }
+        private readonly IDBInteractionService _dbInteractionService;
+
+        public bool IsConnectedToDatabase => _dbInteractionService.IsConnectedToDatabase;
         public IMvxCommand ConnectToDatabaseCommand { get; }
         public IMvxCommand DisconnectFromDatabaseCommand { get; }
 
-        public StudioViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public StudioViewModel(IDBInteractionService dbInteractionService, IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
+            _dbInteractionService = dbInteractionService;
             ConnectToDatabaseCommand = new MvxAsyncCommand(ConnectToDatabase);
             DisconnectFromDatabaseCommand = new MvxCommand(DisconnectFromDatabase);
         }
 
         private async Task ConnectToDatabase()
         {
-            var connectionString = await NavigationService.Navigate<ConnectionFormViewModel, string>();
-            
-            // TODO: Add actual logic here to connect to the database in service
+            var connectionString = await NavigationService.Navigate<ConnectionFormViewModel, ConnectionString>();
+
             if (connectionString != null)
             {
-                IsConnectedToDatabase = true;
+                _dbInteractionService.ConnectToDatabase(connectionString);
+                await RaisePropertyChanged(nameof(IsConnectedToDatabase));
             }
         }
 
         private void DisconnectFromDatabase()
         {
-            // TODO: Add actual logic here to disconnect from the database in service
-            IsConnectedToDatabase = false;
+            _dbInteractionService.DisconnectFromDatabase();
+            RaisePropertyChanged(nameof(IsConnectedToDatabase));
         }
     }
 }
