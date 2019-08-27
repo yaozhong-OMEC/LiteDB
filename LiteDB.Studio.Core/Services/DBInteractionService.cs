@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using LiteDB.Studio.Core.Attributes;
+using LiteDB.Studio.Core.Models;
 using LiteDB.Studio.Core.Services.Interfaces;
 
 namespace LiteDB.Studio.Core.Services
@@ -18,6 +21,21 @@ namespace LiteDB.Studio.Core.Services
             }
 
             _databaseInstance = new LiteDatabase(connectionString);
+            
+            var testModelCollection = _databaseInstance.GetCollection<TestModel>();
+            if (testModelCollection.Count() <= 0)
+            {
+                var list = Enumerable.Range(0, 10).Select(_ => new TestModel()).ToList();
+                testModelCollection.Insert(list);
+            }
+
+            var sc = _databaseInstance.GetCollection("$cols")
+                .Query()
+                //.Where("type = 'system'")
+                .OrderBy("name")
+                .ToDocuments();
+            
+            Console.WriteLine(string.Join("\n", sc));
         }
 
         public void DisconnectFromDatabase()
