@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct" initialViewController="43V-Wn-hUC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,10 +11,10 @@
                 <windowController storyboardIdentifier="StudioToolbarWindowController" showSeguePresentationStyle="single" id="Jup-8R-CHv" customClass="StudioToolbarWindowController" sceneMemberID="viewController">
                     <window key="window" title="LiteDB.Studio.Mac" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="3g4-Zw-Zp0">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <rect key="contentRect" x="653" y="500" width="480" height="270"/>
+                        <rect key="contentRect" x="653" y="500" width="600" height="400"/>
                         <rect key="screenRect" x="300" y="300" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="480" height="270"/>
-                        <toolbar key="toolbar" implicitIdentifier="8207097D-B248-4910-8872-BBD649720872" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="LdZ-Zj-Xnp">
+                        <value key="minSize" type="size" width="600" height="400"/>
+                        <toolbar key="toolbar" implicitIdentifier="36B21447-3E71-428F-8A54-99C54A042744" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="LdZ-Zj-Xnp">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="4ADE4537-93E2-4544-A3CA-D0C6F05DD554" label="Connect" paletteLabel="Toolbar Item" tag="-1" autovalidates="NO" id="dZx-07-21E" customClass="NSExtendedToolbarItem"/>
                                 <toolbarItem implicitItemIdentifier="DA67857E-E7F6-492E-9573-9BF044286971" label="Disconnect" paletteLabel="Toolbar Item" tag="-1" autovalidates="NO" id="Rlg-eB-VZP" customClass="NSExtendedToolbarItem"/>
@@ -44,26 +44,87 @@
             <objects>
                 <viewController storyboardIdentifier="StudioViewController" id="43V-Wn-hUC" customClass="StudioViewController" sceneMemberID="viewController">
                     <view key="view" id="IFt-tl-5nI">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUq-N6-h19">
-                                <rect key="frame" x="185" y="132" width="81" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yr7-gY-ihw">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
+                            <tabView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zo-yO-k2P">
+                                <rect key="frame" x="171" y="10" width="416" height="376"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Tab" identifier="" id="q5B-er-2EI">
+                                        <view key="view" id="73B-10-Am7">
+                                            <rect key="frame" x="10" y="33" width="396" height="330"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="View" identifier="" id="666-Bw-e9U">
+                                        <view key="view" id="1vd-9j-N2M">
+                                            <rect key="frame" x="10" y="33" width="396" height="330"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtw-BC-xtv">
+                                <rect key="frame" x="20" y="20" width="150" height="360"/>
+                                <clipView key="contentView" copiesOnScroll="NO" id="Z4y-pR-L6H">
+                                    <rect key="frame" x="1" y="1" width="148" height="358"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" indentationPerLevel="16" outlineTableColumn="aHj-4B-MGb" id="Cg6-gu-p6l">
+                                            <rect key="frame" x="0.0" y="0.0" width="148" height="358"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="145" minWidth="40" maxWidth="1000" id="aHj-4B-MGb">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="LqX-bK-3aD">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                </tableColumn>
+                                            </tableColumns>
+                                        </outlineView>
+                                    </subviews>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="eZ0-OA-VqR"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ZrR-JX-6ER">
+                                    <rect key="frame" x="1" y="343" width="115" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="WMu-fP-P1L">
+                                    <rect key="frame" x="105" y="1" width="16" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8zo-yO-k2P" secondAttribute="trailing" constant="7" id="3NS-n6-uVq"/>
+                            <constraint firstItem="8zo-yO-k2P" firstAttribute="top" secondItem="IFt-tl-5nI" secondAttribute="top" constant="6" id="44f-aI-1J2"/>
+                            <constraint firstItem="8zo-yO-k2P" firstAttribute="leading" secondItem="qtw-BC-xtv" secondAttribute="trailing" constant="8" symbolic="YES" id="4F9-HD-su6"/>
+                            <constraint firstItem="qtw-BC-xtv" firstAttribute="top" secondItem="IFt-tl-5nI" secondAttribute="top" constant="20" symbolic="YES" id="FBS-TL-w7H"/>
+                            <constraint firstAttribute="bottom" secondItem="8zo-yO-k2P" secondAttribute="bottom" constant="10" id="G6x-8o-MEd"/>
+                            <constraint firstItem="qtw-BC-xtv" firstAttribute="leading" secondItem="IFt-tl-5nI" secondAttribute="leading" constant="20" symbolic="YES" id="WSL-YN-ZyG"/>
+                            <constraint firstAttribute="bottom" secondItem="qtw-BC-xtv" secondAttribute="bottom" constant="20" symbolic="YES" id="ZJl-nj-Fqz"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="TestButton" destination="uUq-N6-h19" id="kjE-Ef-kuu"/>
+                        <outlet property="databaseCollectionsView" destination="Cg6-gu-p6l" id="auk-aN-yrf"/>
                     </connections>
                 </viewController>
                 <customObject id="uU3-td-wKi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="-98"/>
+            <point key="canvasLocation" x="117" y="-63"/>
         </scene>
     </scenes>
 </document>

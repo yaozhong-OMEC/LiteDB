@@ -10,17 +10,17 @@ using System.CodeDom.Compiler;
 
 namespace LiteDB.Studio.Mac.Views.Main
 {
-	[Register (nameof(StudioViewController))]
+	[Register ("StudioViewController")]
 	partial class StudioViewController
 	{
 		[Outlet]
-		AppKit.NSButton TestButton { get; set; }
+		AppKit.NSOutlineView databaseCollectionsView { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (TestButton != null) {
-				TestButton.Dispose ();
-				TestButton = null;
+			if (databaseCollectionsView != null) {
+				databaseCollectionsView.Dispose ();
+				databaseCollectionsView = null;
 			}
 
 		}
