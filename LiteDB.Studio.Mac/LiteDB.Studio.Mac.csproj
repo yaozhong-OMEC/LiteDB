@@ -94,6 +94,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bindings\NSOutlineViewDataSourceTargetBinding.cs" />
     <Compile Include="Converters\ListToOutlineViewDataSourceValueConverter.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
