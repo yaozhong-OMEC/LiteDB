@@ -47,24 +47,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zo-yO-k2P">
-                                <rect key="frame" x="171" y="10" width="416" height="376"/>
-                                <font key="font" metaFont="system"/>
-                                <tabViewItems>
-                                    <tabViewItem label="Tab" identifier="" id="q5B-er-2EI">
-                                        <view key="view" id="73B-10-Am7">
-                                            <rect key="frame" x="10" y="33" width="396" height="330"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                    <tabViewItem label="View" identifier="" id="666-Bw-e9U">
-                                        <view key="view" id="1vd-9j-N2M">
-                                            <rect key="frame" x="10" y="33" width="396" height="330"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                </tabViewItems>
-                            </tabView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtw-BC-xtv">
                                 <rect key="frame" x="20" y="20" width="150" height="360"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="Z4y-pR-L6H">
@@ -78,7 +60,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="145" minWidth="40" maxWidth="1000" id="aHj-4B-MGb">
+                                                <tableColumn editable="NO" width="145" minWidth="40" maxWidth="1000" id="aHj-4B-MGb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -107,6 +89,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <tabView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zo-yO-k2P">
+                                <rect key="frame" x="171" y="10" width="416" height="376"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Item 0" identifier="" id="Nsu-GV-Ql7">
+                                        <view key="view" id="kZj-CC-Z8H">
+                                            <rect key="frame" x="10" y="33" width="396" height="330"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8zo-yO-k2P" secondAttribute="trailing" constant="7" id="3NS-n6-uVq"/>
