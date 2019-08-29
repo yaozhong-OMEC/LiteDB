@@ -21,21 +21,15 @@ namespace LiteDB.Studio.Core.Services
             }
 
             _databaseInstance = new LiteDatabase(connectionString);
-            
-            var testModelCollection = _databaseInstance.GetCollection<TestModel>();
+
+            /*var testModelCollection = _databaseInstance.GetCollection<TestModel>();
             if (testModelCollection.Count() <= 0)
             {
                 var list = Enumerable.Range(0, 10).Select(_ => new TestModel()).ToList();
                 testModelCollection.Insert(list);
-            }
+            }*/
 
-            var sc = _databaseInstance.GetCollection("$cols")
-                .Query()
-                //.Where("type = 'system'")
-                .OrderBy("name")
-                .ToDocuments();
-            
-            Console.WriteLine(string.Join("\n", sc));
+            //_databaseInstance.Execute("");
         }
 
         public void DisconnectFromDatabase()
