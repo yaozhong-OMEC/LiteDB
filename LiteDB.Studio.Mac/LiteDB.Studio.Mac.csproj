@@ -94,8 +94,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\ListToOutlineViewDataSourceValueConverter.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Models\Node.cs" />
     <Compile Include="Presenters\CustomMacViewPresenter.cs" />
     <Compile Include="Services\PlatformService.cs" />
     <Compile Include="Setup.cs" />
@@ -103,6 +105,8 @@
     <Compile Include="Views\ConnectionForm\ConnectionFormViewController.designer.cs">
       <DependentUpon>ConnectionFormViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CollectionOutlineView\OutlineViewDelegate.cs" />
+    <Compile Include="Views\Controls\CollectionOutlineView\OutlineViewDataSource.cs" />
     <Compile Include="Views\Controls\NSExtendedToolbarItem.cs" />
     <Compile Include="Views\Main\StudioToolbarWindowController.cs" />
     <Compile Include="Views\Main\StudioToolbarWindowController.designer.cs">
