@@ -6,10 +6,8 @@ namespace LiteDB.Engine
     /// <summary>
     /// Interface to read current or old datafile structure - Used to shirnk/upgrade datafile from old LiteDB versions
     /// </summary>
-    interface IFileReader : IDisposable
+    interface IFileReader
     {
-        int UserVersion { get; }
-
         /// <summary>
         /// Get all collections name from database
         /// </summary>

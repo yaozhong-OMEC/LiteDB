@@ -75,6 +75,13 @@ namespace LiteDB
                     yield return value;
                 }
             }
+            else if (array.IsBinary)
+            {
+                foreach (var value in array.AsBinary)
+                {
+                    yield return (int)value;
+                }
+            }
             else
             {
                 yield return array;
@@ -90,21 +97,6 @@ namespace LiteDB
         }
 
         /// <summary>
-        /// Return document raw id (position in datapage). Works only for root document 
-        /// </summary>
-        public static BsonValue RAW_ID(BsonValue document)
-        {
-            if (document.IsDocument)
-            {
-                var doc = document.AsDocument;
-
-                return doc.RawId.IsEmpty ? BsonValue.Null : new BsonValue(doc.RawId.ToString());
-            }
-
-            return BsonValue.Null;
-        }
-
-        /// <summary>
         /// Get all KEYS names from a document
         /// </summary>
         public static IEnumerable<BsonValue> KEYS(BsonValue document)
@@ -114,6 +106,20 @@ namespace LiteDB
                 foreach (var key in document.AsDocument.Keys)
                 {
                     yield return key;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get all values from a document
+        /// </summary>
+        public static IEnumerable<BsonValue> VALUES(BsonValue document)
+        {
+            if (document.IsDocument)
+            {
+                foreach (var value in document.AsDocument.Values)
+                {
+                    yield return value;
                 }
             }
         }
@@ -134,14 +140,11 @@ namespace LiteDB
         /// <summary>
         /// Conditional IF statment. If condition are true, returns TRUE value, otherwise, FALSE value
         /// </summary>
-        public static BsonValue IIF(BsonValue condition, BsonValue ifTrue, BsonValue ifFalse)
+        public static BsonValue IIF(BsonValue test, BsonValue ifTrue, BsonValue ifFalse)
         {
-            if (condition.IsBoolean)
-            {
-                return condition.AsBoolean ? ifTrue : ifFalse;
-            }
-
-            return BsonValue.Null;
+            // this method are not implemented because will use "Expression.Conditional"
+            // will execute "ifTrue" only if test = true and will execute "ifFalse" if test = false
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -175,10 +178,10 @@ namespace LiteDB
             {
                 var numInt = num.AsInt32;
 
-                if(numInt > 0)
-                    return values.Take(numInt);                    
+                if (numInt > 0)
+                    return values.Take(numInt);
             }
-            return Enumerable.Empty<BsonValue>();                          
+            return Enumerable.Empty<BsonValue>();
         }
 
         /// <summary>
@@ -203,6 +206,33 @@ namespace LiteDB
         public static IEnumerable<BsonValue> DISTINCT(IEnumerable<BsonValue> items)
         {
             return items.Distinct();
+        }
+
+        private static Random _random = new Random();
+
+        /// <summary>
+        /// Return a random int value
+        /// </summary>
+        [Volatile]
+        public static BsonValue RANDOM()
+        {
+            return _random.Next();
+        }
+
+        /// <summary>
+        /// Return a ranom int value inside this min/max values
+        /// </summary>
+        [Volatile]
+        public static BsonValue RANDOM(BsonValue min, BsonValue max)
+        {
+            if (min.IsNumber && max.IsNumber)
+            {
+                return _random.Next(min.AsInt32, max.AsInt32);
+            }
+            else
+            {
+                return BsonValue.Null;
+            }
         }
     }
 }
